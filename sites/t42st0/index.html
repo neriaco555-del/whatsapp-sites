@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>דף בדיקה</title>
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --card-bg: #fff;
+      --primary: #4a90e2;
+      --text: #333;
+      --radius: .8rem;
+      --shadow: 0 2px 8px rgba(0,0,0,.1);
+      --font: 'Arial', sans-serif;
+    }
+    body {
+      margin:0;
+      padding:0;
+      background: var(--bg);
+      font-family: var(--font);
+      color: var(--text);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+    }
+    .container {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      max-width: 90%;
+      width: 320px;
+      text-align:center;
+    }
+    h1 {
+      margin:0 0 1rem;
+      font-size:1.8rem;
+      color: var(--primary);
+    }
+    button {
+      background: var(--primary);
+      color:#fff;
+      border:none;
+      border-radius: var(--radius);
+      padding:.6rem 1.2rem;
+      font-size:1rem;
+      cursor:pointer;
+      transition:background .2s;
+    }
+    button:hover {
+      background:#357ab8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>שלום עולם</h1>
+    <button id="testBtn">לחץ כאן</button>
+  </div>
+  <script>
+    document.getElementById('testBtn').addEventListener('click', () => {
+      alert('האתר פועל! 🎉');
+    });
+  </script>
+</body>
+</html>
