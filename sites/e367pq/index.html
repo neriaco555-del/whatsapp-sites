@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ניהול עסק בשרים</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;background:#f5f5f5;margin:0;padding:0;color:#333;}
+  header{background:#b22222;color:#fff;padding:1rem;text-align:center;font-size:1.5rem;}
+  .container{padding:1rem;}
+  .section{background:#fff;margin-bottom:1rem;border-radius:8px;padding:1rem;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+  h2{margin-top:0;color:#b22222;}
+  .menu-item{display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid #eee;}
+  .menu-item:last-child{border:none;}
+  .price{font-weight:bold;color:#b22222;}
+  .stats{display:flex;flex-wrap:wrap;gap:0.5rem;}
+  .stat{flex:1 1 45%;background:#b22222;color:#fff;padding:0.5rem;border-radius:4px;text-align:center;}
+  #chat{display:flex;flex-direction:column;height:400px;background:#fff;border:1px solid #ddd;border-radius:8px;overflow:hidden;}
+  #messages{flex:1;padding:0.5rem;overflow-y:auto;}
+  .msg{margin:0.5rem 0;max-width:80%;padding:0.5rem 0.8rem;border-radius:12px;clear:both;}
+  .user{background:#b22222;color:#fff;margin-left:auto;text-align:right;}
+  .bot{background:#e0e0e0;color:#000;margin-right:auto;text-align:left;}
+  #inputArea{display:flex;border-top:1px solid #ddd;}
+  #userInput{flex:1;padding:0.5rem;border:none;font-size:1rem;}
+  #sendBtn{background:#b22222;color:#fff;border:none;padding:0.5rem 1rem;cursor:pointer;}
+  @media (max-width:600px){
+    .stat{flex-basis:100%;}
+    #chat{height:300px;}
+  }
+</style>
+</head>
+<body>
+<header>🛒 ניהול עסק בשרים</header>
+<div class="container">
+  <section class="section">
+    <h2>תפריט מומלץ</h2>
+    <div class="menu-item"><span>סטייק אנטריקוט 250ג</span><span class="price">₪45</span></div>
+    <div class="menu-item"><span>קבב קלאסי 4 יח'</span><span class="price">₪30</span></div>
+    <div class="menu-item"><span>צלעות צלייה 500ג</span><span class="price">₪70</span></div>
+  </section>
+
+  <section class="section">
+    <h2>סטטיסטיקות היום</h2>
+    <div class="stats">
+      <div class="stat">🧾 מכירות: ₪120</div>
+      <div class="stat">🍖 מנות: 12</div>
+      <div class="stat">👥 לקוחות: 8</div>
+      <div class="stat">⏰ זמן פתיחה: 8:00-22:00</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>צ'אט בוט שירות לקוחות</h2>
+    <div id="chat">
+      <div id="messages"></div>
+      <div id="inputArea">
+        <input type="text" id="userInput" placeholder="הקלידו הודעה...">
+        <button id="sendBtn">שלח</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const msgs=document.getElementById('messages');
+const input=document.getElementById('userInput');
+const send=document.getElementById('sendBtn');
+
+function addMessage(text, fromUser){
+  const div=document.createElement('div');
+  div.className='msg '+(fromUser?'user':'bot');
+  div.textContent=text;
+  msgs.appendChild(div);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+function botReply(userText){
+  const low=userText.toLowerCase();
+  if(low.includes('מחיר')||low.includes('כמה')){
+    return 'המחירים מופיעים בתפריט למעלה. 😊';
+  } else if(low.includes('פתוח')||low.includes('שעה')){
+    return 'העסק פתוח 8:00 עד 22:00.';
+  } else if(low.includes('הזמנה')){
+    return 'להזמנה, אנא חייגו 03-1234567 או שלחו הודעה כאן.';
+  } else {
+    return 'סליחה, לא הבנתי. אשמח לעזור במשהו אחר!';
+  }
+}
+send.onclick=()=>{sendMessage();};
+input.addEventListener('keypress',e=>{if(e.key==='Enter')sendMessage();});
+function sendMessage(){
+  const text=input.value.trim();
+  if(!text) return;
+  addMessage(text,true);
+  input.value='';
+  setTimeout(()=>{addMessage(botReply(text),false);},500);
+}
+addMessage('שלום! איך אפשר לעזור?',false);
+</script>
+</body>
+</html>
