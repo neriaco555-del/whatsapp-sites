@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קבוצות ווטסאפ רנדומליות</title>
+    <style>
+        body {
+            margin:0;
+            padding:0;
+            font-family:Arial,Helvetica,sans-serif;
+            background:#f0f4f8;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+            color:#333;
+        }
+        .card {
+            background:#fff;
+            border-radius:12px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.1);
+            max-width:400px;
+            width:90%;
+            padding:20px;
+            text-align:center;
+        }
+        .group-name {
+            font-size:1.5rem;
+            margin-bottom:8px;
+        }
+        .group-desc {
+            font-size:1rem;
+            margin-bottom:16px;
+            color:#555;
+        }
+        .btn {
+            background:#25D366;
+            color:#fff;
+            border:none;
+            border-radius:8px;
+            padding:12px 20px;
+            font-size:1rem;
+            cursor:pointer;
+            text-decoration:none;
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+        }
+        .btn:hover {
+            background:#1ebc5a;
+        }
+        .refresh {
+            margin-top:12px;
+            background:#e0e0e0;
+            color:#333;
+        }
+        .refresh:hover {
+            background:#c8c8c8;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="group-name" id="name">📱 קבוצה רנדומלית</div>
+        <div class="group-desc" id="desc">תיאור הקבוצה יופיע כאן.</div>
+        <a href="#" class="btn" id="joinBtn">הצטרף לווטסאפ <span>🟢</span></a>
+        <button class="btn refresh" id="newBtn">קבל קבוצה אחרת 🔄</button>
+    </div>
+    <script>
+        const groups = [
+            {
+                name: "קבוצת טכנולוגיה וחדשנות",
+                desc: "חדשות, מאמרים ודיונים על טכנולוגיות מתקדמות.",
+                link: "https://chat.whatsapp.com/example1"
+            },
+            {
+                name: "קבוצת ספורט ופעילות",
+                desc: "שיתוף של אירועי ספורט, טיפים וכושר.",
+                link: "https://chat.whatsapp.com/example2"
+            },
+            {
+                name: "קבוצת בישול וטעמים",
+                desc: "מתכונים, טיפים וביקורות על אוכל.",
+                link: "https://chat.whatsapp.com/example3"
+            },
+            {
+                name: "קבוצת מסעות וטיולים",
+                desc: "המלצות על מקומות לטייל, חוויות וציוד.",
+                link: "https://chat.whatsapp.com/example4"
+            },
+            {
+                name: "קבוצת סרטים וסדרות",
+                desc: "דיונים, ביקורות והמלצות על סרטים וסדרות.",
+                link: "https://chat.whatsapp.com/example5"
+            }
+        ];
+
+        const nameEl = document.getElementById('name');
+        const descEl = document.getElementById('desc');
+        const joinBtn = document.getElementById('joinBtn');
+        const newBtn = document.getElementById('newBtn');
+
+        function setRandomGroup() {
+            const grp = groups[Math.floor(Math.random()*groups.length)];
+            nameEl.textContent = grp.name;
+            descEl.textContent = grp.desc;
+            joinBtn.href = grp.link;
+        }
+
+        newBtn.addEventListener('click', setRandomGroup);
+        // Initial load
+        setRandomGroup();
+    </script>
+</body>
+</html>
