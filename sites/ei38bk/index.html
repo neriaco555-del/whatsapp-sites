@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>סימולציית Android 12</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body,html{margin:0;padding:0;height:100%;font-family:Arial,Helvetica,sans-serif;background:#f0f2f5;}
+  #phone{position:relative;max-width:420px;margin:auto;background:#fff;border-radius:30px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+  #status{height:24px;background:#000;color:#fff;padding:0 8px;display:flex;align-items:center;justify-content:space-between;font-size:12px;}
+  #status .left{display:flex;gap:6px;}
+  #status .right{display:flex;gap:6px;align-items:center;}
+  #screen{position:relative;padding-top:8px;min-height:600px;background:#e5e5e5;}
+  .icon{width:68px;height:68px;background:#fff;border-radius:16px;margin:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.2);font-size:28px;cursor:pointer;}
+  .icon span{font-size:12px;margin-top:4px;}
+  #grid{display:flex;flex-wrap:wrap;justify-content:center;}
+  #nav{height:56px;background:#fff;display:flex;justify-content:space-around;align-items:center;border-top:1px solid #ccc;}
+  #nav button{background:none;border:none;font-size:24px;cursor:pointer;color:#555;}
+  #nav button.active{color:#3ddc84;}
+</style>
+</head>
+<body>
+<div id="phone">
+  <div id="status">
+    <div class="right"><span id="time">12:00</span>🔋100%</div>
+    <div class="left">📶 4G <span>🔔</span></div>
+  </div>
+  <div id="screen">
+    <div id="grid">
+      <div class="icon" onclick="alert('אפליקציית הודעות')">
+        📩<span>הודעות</span>
+      </div>
+      <div class="icon" onclick="alert('אפליקציית טלפון')">
+        📞<span>טלפון</span>
+      </div>
+      <div class="icon" onclick="alert('אפליקציית מצלמה')">
+        📷<span>מצלמה</span>
+      </div>
+      <div class="icon" onclick="alert('אפליקציית גלריה')">
+        🖼️<span>גלריה</span>
+      </div>
+      <div class="icon" onclick="alert('אפליקציית דפדפן')">
+        🌐<span>דפדפן</span>
+      </div>
+      <div class="icon" onclick="alert('אפליקציית חנות')">
+        🛒<span>חנות</span>
+      </div>
+    </div>
+  </div>
+  <div id="nav">
+    <button id="back" onclick="alert('חזרה')">←</button>
+    <button id="home" class="active" onclick="alert('בית')">🏠</button>
+    <button id="recents" onclick="alert('אחרונים')">☰</button>
+  </div>
+</div>
+<script>
+  function updateTime(){
+    const now=new Date();
+    const h=String(now.getHours()).padStart(2,'0');
+    const m=String(now.getMinutes()).padStart(2,'0');
+    document.getElementById('time').textContent=`${h}:${m}`;
+  }
+  setInterval(updateTime,60000);
+  updateTime();
+</script>
+</body>
+</html>
