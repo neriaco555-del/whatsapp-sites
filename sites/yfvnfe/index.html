@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>סרטים בחינם</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;background:#f5f5f5;color:#333;margin:0;padding:0;}
+  header{background:#222;color:#fff;padding:1rem;text-align:center;}
+  header h1{margin:0;font-size:1.5rem;}
+  #search{margin:1rem auto;width:90%;max-width:600px;display:flex;}
+  #search input{flex:1;padding:0.5rem;border:1px solid #ccc;border-radius:4px 0 0 4px;outline:none;}
+  #search button{padding:0.5rem 1rem;background:#ff5722;color:#fff;border:none;border-radius:0 4px 4px 0;cursor:pointer;}
+  #gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem;padding:1rem;}
+  .movie{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 5px rgba(0,0,0,0.1);cursor:pointer;transition:transform .2s;}
+  .movie:hover{transform:scale(1.03);}
+  .movie img{width:100%;height:auto;display:block;}
+  .movie h3{margin:0.5rem;font-size:1rem;padding:0 0.5rem;}
+  #modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center;z-index:1000;}
+  #modal video{max-width:90%;max-height:80%;border-radius:8px;}
+  #modal button{position:absolute;top:1rem;left:1rem;background:#ff5722;color:#fff;border:none;padding:0.5rem 1rem;border-radius:4px;cursor:pointer;}
+  @media (max-width:600px){
+    header h1{font-size:1.2rem;}
+    #search input,#search button{font-size:0.9rem;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>סרטים בחינם 🎬</h1>
+</header>
+<div id="search">
+  <input type="text" id="q" placeholder="חפש סרט...">
+  <button onclick="filter()">חיפוש</button>
+</div>
+<div id="gallery"></div>
+
+<div id="modal">
+  <button onclick="closeModal()">סגור</button>
+  <video controls></video>
+</div>
+
+<script>
+const movies = [
+  {title:"הסרט הראשון",thumb:"https://via.placeholder.com/300x450?text=Movie+1",src:"https://www.w3schools.com/html/mov_bbb.mp4"},
+  {title:"הסרט השני",thumb:"https://via.placeholder.com/300x450?text=Movie+2",src:"https://www.w3schools.com/html/movie.mp4"},
+  {title:"הסרט השלישי",thumb:"https://via.placeholder.com/300x450?text=Movie+3",src:"https://www.w3schools.com/html/mov_bbb.mp4"},
+  {title:"הסרט הרביעי",thumb:"https://via.placeholder.com/300x450?text=Movie+4",src:"https://www.w3schools.com/html/movie.mp4"},
+  {title:"הסרט החמישי",thumb:"https://via.placeholder.com/300x450?text=Movie+5",src:"https://www.w3schools.com/html/mov_bbb.mp4"},
+];
+
+function render(list){
+  const gallery=document.getElementById('gallery');
+  gallery.innerHTML='';
+  list.forEach(m=>{ 
+    const div=document.createElement('div');
+    div.className='movie';
+    div.innerHTML=`<img src="${m.thumb}" alt="${m.title}"><h3>${m.title}</h3>`;
+    div.onclick=()=>openModal(m.src);
+    gallery.appendChild(div);
+  });
+}
+function filter(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const filtered=movies.filter(m=>m.title.toLowerCase().includes(q));
+  render(filtered);
+}
+function openModal(src){
+  const modal=document.getElementById('modal');
+  const video=modal.querySelector('video');
+  video.src=src;
+  video.play();
+  modal.style.display='flex';
+}
+function closeModal(){
+  const modal=document.getElementById('modal');
+  const video=modal.querySelector('video');
+  video.pause();
+  video.currentTime=0;
+  modal.style.display='none';
+}
+render(movies);
+</script>
+</body>
+</html>
