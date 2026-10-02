@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>שידורי כדורגל בטוחים</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f5f5;color:#333;}
+    header{background:#0066cc;color:#fff;padding:1rem;text-align:center;}
+    header h1{margin:0;font-size:1.5rem;}
+    .container{padding:1rem;}
+    .search-box{margin-bottom:1rem;display:flex;}
+    .search-box input{flex:1;padding:.5rem;border:1px solid #ccc;border-radius:4px;}
+    .match-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;}
+    .match{background:#fff;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,0.1);overflow:hidden;display:flex;flex-direction:column;}
+    .match img{width:100%;height:auto;}
+    .match-info{padding:.5rem 1rem;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+    .match-info h2{margin:0;font-size:1.1rem;}
+    .match-info button{background:#0066cc;color:#fff;border:none;padding:.5rem;border-radius:4px;cursor:pointer;}
+    .match-info button:hover{background:#0055aa;}
+    @media (max-width:600px){
+        header h1{font-size:1.2rem;}
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>שידורי כדורגל בטוחים ללא וירוסים</h1>
+</header>
+<div class="container">
+    <div class="search-box">
+        <input type="text" id="search" placeholder="חפש קבוצה או ליגה...">
+    </div>
+    <div class="match-list" id="matchList">
+        <!-- דוגמאות לשידורים -->
+        <div class="match" data-title="מכבי תל אביב vs הפועל חיפה">
+            <img src="https://via.placeholder.com/400x200?text=מכבי+תל+אביב+vs+הפועל+חיפה" alt="מכבי תל אביב vs הפועל חיפה">
+            <div class="match-info">
+                <h2>מכבי תל אביב vs הפועל חיפה</h2>
+                <button onclick="openStream('https://example.com/stream1')">צפה בשידור</button>
+            </div>
+        </div>
+        <div class="match" data-title="הפועל באר שבע vs בית"ר ירושלים">
+            <img src="https://via.placeholder.com/400x200?text=הפועל+באר+שבע+vs+בית"ר+ירושלים" alt="הפועל באר שבע vs בית"ר ירושלים">
+            <div class="match-info">
+                <h2>הפועל באר שבע vs בית"ר ירושלים</h2>
+                <button onclick="openStream('https://example.com/stream2')">צפה בשידור</button>
+            </div>
+        </div>
+        <div class="match" data-title="מכבי חיפה vs מ.פ. חיפה">
+            <img src="https://via.placeholder.com/400x200?text=מכבי+חיפה+vs+מ.פ.+חיפה" alt="מכבי חיפה vs מ.פ. חיפה">
+            <div class="match-info">
+                <h2>מכבי חיפה vs מ.פ. חיפה</h2>
+                <button onclick="openStream('https://example.com/stream3')">צפה בשידור</button>
+            </div>
+        </div>
+        <!-- ניתן להוסיף עוד שידורים כאן -->
+    </div>
+</div>
+
+<script>
+    function openStream(url){
+        window.open(url, '_blank');
+    }
+
+    const searchInput = document.getElementById('search');
+    const matches = document.querySelectorAll('.match');
+
+    searchInput.addEventListener('input', function(){
+        const term = this.value.toLowerCase();
+        matches.forEach(m=> {
+            const title = m.dataset.title.toLowerCase();
+            if(title.includes(term)){
+                m.style.display = '';
+            } else {
+                m.style.display = 'none';
+            }
+        });
+    });
+</script>
+</body>
+</html>
