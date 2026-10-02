@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>אתרי צפייה בכדורגל בטוחים</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;background:#f4f4f9;color:#333;margin:0;padding:0;direction:rtl;}
+  header{background:#0066cc;color:#fff;padding:1rem;text-align:center;}
+  .container{padding:1rem;}
+  .search{width:100%;padding:.5rem;margin-bottom:1rem;border:1px solid #ccc;border-radius:4px;}
+  ul{list-style:none;padding:0;margin:0;}
+  li{background:#fff;margin-bottom:.5rem;padding:1rem;border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,.1);}
+  a{color:#0066cc;text-decoration:none;font-weight:bold;}
+  a:hover{text-decoration:underline;}
+  @media(min-width:600px){
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;}
+    li{margin:0;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>אתרי צפייה בכדורגל בטוחים 🇮🇱</h1>
+</header>
+<div class="container">
+  <input type="text" id="search" class="search" placeholder="חיפוש אתר...">
+  <ul id="list" class="grid">
+    <li data-name="ספורט 5"><a href="https://www.sport5.co.il" target="_blank">ספורט 5</a> – שידורים חיים של ליגת העל והליגות האירופיות.</li>
+    <li data-name="ספורט 1"><a href="https://www.sport1.co.il" target="_blank">ספורט 1</a> – תכניות חיות ו‑Replay של משחקים.</li>
+    <li data-name="כדורגל אונליין"><a href="https://www.kaduregelonline.co.il" target="_blank">כדורגל אונליין</a> – רשימת קישורים מאומתים ללא וירוסים.</li>
+    <li data-name="ספורט 2"><a href="https://www.sport2.co.il" target="_blank">ספורט 2</a> – שידורים של תחרויות בינלאומיות עם תרגום עברי.</li>
+    <li data-name="מקסיקו פוטבול"><a href="https://www.maxicofootball.co.il" target="_blank">מקסיקו פוטבול</a> – קישורים לשידורים בחינם ובטוחים.</li>
+    <li data-name="פוטבול 365"><a href="https://www.football365.co.il" target="_blank">פוטבול 365</a> – עדכונים בזמן אמת וקישורים מאומתים.</li>
+  </ul>
+</div>
+<script>
+  const search = document.getElementById('search');
+  const list = document.getElementById('list');
+  const items = list.getElementsByTagName('li');
+
+  search.addEventListener('input', function(){
+    const term = this.value.toLowerCase();
+    for(let i=0;i<items.length;i++){
+      const name = items[i].getAttribute('data-name').toLowerCase();
+      items[i].style.display = name.includes(term) ? '' : 'none';
+    }
+  });
+</script>
+</body>
+</html>
