@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>כל על הכלבים</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+body{background:#f9f9f9;color:#333;line-height:1.6}
+header{background:#ff6f61;color:#fff;padding:1rem;text-align:center}
+nav{display:flex;justify-content:center;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.1)}
+nav a{padding:0.75rem 1rem;color:#ff6f61;text-decoration:none;font-weight:bold}
+nav a:hover{background:#ff6f61;color:#fff}
+section{padding:2rem 1rem;max-width:800px;margin:auto}
+h2{margin-bottom:0.5rem;color:#ff6f61}
+p{margin-bottom:1rem}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:0.5rem}
+.gallery img{width:100%;height:auto;border-radius:8px}
+button{background:#ff6f61;color:#fff;border:none;padding:0.5rem 1rem;border-radius:4px;cursor:pointer}
+button:hover{background:#e65b50}
+footer{background:#333;color:#fff;text-align:center;padding:1rem;margin-top:2rem}
+@media (max-width:600px){
+nav{flex-direction:column}
+nav a{border-bottom:1px solid #eee}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>כל על הכלבים 🐾</h1>
+</header>
+<nav>
+<a href="#home">בית</a>
+<a href="#breeds">גזעים</a>
+<a href="#care">טיפוח</a>
+<a href="#contact">יצירת קשר</a>
+</nav>
+
+<section id="home">
+<h2>ברוכים הבאים!</h2>
+<p>אתר זה מציע מידע מקיף על כלבים – מגזעים שונים ועד טיפים לטיפוח ובריאות.</p>
+<button id="factBtn">עובדה מעניינת על כלבים</button>
+<p id="factDisplay" style="margin-top:0.5rem;font-style:italic;"></p>
+</section>
+
+<section id="breeds">
+<h2>גזעי כלבים פופולריים</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1558788353-f76d92427f16?w=400&fit=crop" alt="כלב לבן">
+<img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=400&fit=crop" alt="כלב שחור">
+<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&fit=crop" alt="כלב חום">
+<img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?w=400&fit=crop" alt="כלב קטן">
+</div>
+</section>
+
+<section id="care">
+<h2>טיפוח ובריאות</h2>
+<p>הקפדה על תזונה נכונה, פעילות גופנית סדירה וביקורים קבועים אצל הווטרינר משמרים את בריאות הכלב.</p>
+<ul>
+<li>הזנה מאוזנת – מזון ייעודי לכלב.</li>
+<li>רחיצה קבועה – לא יותר מדי, כדי לא לפגוע בשמן הטבעי של העור.</li>
+<li>פעילות – הליכות יומיומיות ומשחקים.</li>
+</ul>
+</section>
+
+<section id="contact">
+<h2>יצירת קשר</h2>
+<p>לשאלות והצעות, כתבו לנו ב‑<a href="mailto:info@dogsite.co.il">info@dogsite.co.il</a>.</p>
+</section>
+
+<footer>
+<p>© 2026 כל על הכלבים – כל הזכויות שמורות.</p>
+</footer>
+
+<script>
+const facts = [
+"כלבים יכולים לזהות ריחות עד 10,000 פעמים חזקים מבני אדם.",
+"כלב ממוצע חווה כ-12 שעות של שינה ביום.",
+"הקול של כלב צ'יוואווה הוא אחד הקולות הגבוהים ביותר בקרב הכלבים.",
+"כלבים מבינים כ-165 מילים ופקודות שונות."
+];
+document.getElementById('factBtn').addEventListener('click',()=>{
+  const fact = facts[Math.floor(Math.random()*facts.length)];
+  document.getElementById('factDisplay').textContent = fact;
+});
+document.querySelectorAll('nav a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
