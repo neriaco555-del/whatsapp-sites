@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הקבוצה שלנו</title>
+    <style>
+        :root {
+            --primary:#1976d2;
+            --bg:#e3f2fd;
+            --text:#212121;
+            --card-bg:#ffffff;
+        }
+        body,html{
+            margin:0;
+            padding:0;
+            height:100%;
+            font-family:Arial,Helvetica,sans-serif;
+            background:var(--bg);
+            color:var(--text);
+        }
+        .hero{
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:var(--primary);
+            padding:20px;
+            box-sizing:border-box;
+        }
+        .card{
+            background:var(--card-bg);
+            border-radius:12px;
+            max-width:600px;
+            width:100%;
+            padding:1.5rem;
+            box-shadow:0 4px 12px rgba(0,0,0,0.1);
+            text-align:justify;
+        }
+        h1{
+            margin-top:0;
+            font-size:1.8rem;
+            color:var(--primary);
+        }
+        p{
+            line-height:1.6;
+            margin:1rem 0;
+        }
+        @media (max-width:480px){
+            h1{font-size:1.5rem;}
+            .card{padding:1rem;}
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="card">
+            <h1>על הקבוצה שלנו</h1>
+            <p>
+                ברוכים הבאים לדף ההסבר של הקבוצה. כאן תמצאו מידע מקיף על מטרות הקבוצה,
+                הפעילויות שלנו, והצוות שמאחורי היוזמה. הקבוצה פועלת במטרה לקדם ידע,
+                שיתוף וחיבור בין חברים עם תחומי עניין משותפים.
+            </p>
+            <p>
+                אנו מזמינים אתכם להצטרף, לתרום רעיונות ולהיות חלק מהקהילה המתפתחת.
+                לכל שאלה או פנייה, ניתן לפנות אלינו דרך דף יצירת הקשר.
+            </p>
+        </div>
+    </section>
+</body>
+</html>
