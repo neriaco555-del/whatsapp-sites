@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K — סטודיו למיתוג ודיגיטל</title>
+    <style>
+        :root {
+            --bg: #0b0c10;
+            --surface: #1f2833;
+            --card: #141b22;
+            --accent: #66fcf1;
+            --accent-glow: rgba(102, 252, 241, 0.25);
+            --text: #c5c6c7;
+            --text-heading: #ffffff;
+            --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background: rgba(11, 12, 16, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-heading);
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin-right: 24px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+            position: relative;
+            background: radial-gradient(circle at 50% 30%, #1f2833 0%, var(--bg) 70%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(102, 252, 241, 0.1);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            color: var(--text-heading);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            max-width: 850px;
+            font-weight: 800;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+            text-shadow: 0 0 25px var(--accent-glow);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin-bottom: 35px;
+            color: #a0a5ad;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: #0b0c10;
+            padding: 14px 36px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(102, 252, 241, 0.45);
+        }
+
+        .section {
+            padding: 90px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--text-heading);
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: #8c929d;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 18px;
+            display: inline-block;
+            background: rgba(102, 252, 241, 0.1);
+            padding: 12px;
+            border-radius: 12px;
+            color: var(--accent);
+        }
+
+        .card h3 {
+            color: var(--text-heading);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #9aa0a6;
+            font-size: 0.95rem;
+        }
+
+        .stats {
+            background: #0f1319;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px 8%;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item h4 {
+            font-size: 2.8rem;
+            color: var(--accent);
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .stat-item p {
+            color: #8c929d;
+            font-size: 0.95rem;
+        }
+
+        .contact-box {
+            background: linear-gradient(145deg, #161e27, #10161d);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid rgba(102, 252, 241, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #d1d5db;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--accent);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .btn-submit {
+            width: 100%;
+        }
+
+        .status-msg {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            background: rgba(102, 252, 241, 0.15);
+            color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #6c7380;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 15px 5%;
+            }
+            .hero {
+                padding-top: 100px;
+            }
+            .section {
+                padding: 60px 5%;
+            }
+            .contact-box {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">K<span></span></a>
+        <nav>
+            <a href="#services">שירותים</a>
+            <a href="#about">אודות</a>
+            <a href="#contact">יצירת קשר</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-badge">חדשנות • דיוק • תוצאות</div>
+        <h1>חוויה דיגיטלית שמתחילה ב-<span>K</span></h1>
+        <p>אנו יוצרים מותגים, מוצרי תוכנה וממשקים מתקדמים שמעצבים מחדש את הדרך שבה לקוחות מתחברים לעסק שלך.</p>
+        <a href="#contact" class="btn">בואו נדבר עכשיו</a>
+    </section>
+
+    <div class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h4 id="counter1">0</h4>
+                <p>פרויקטים שהושקו</p>
+            </div>
+            <div class="stat-item">
+                <h4 id="counter2">0</h4>
+                <p>לקוחות מרוצים</p>
+            </div>
+            <div class="stat-item">
+                <h4>99.9%</h4>
+                <p>זמינות ואמינות</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="services" class="section">
+        <div class="section-header">
+            <h2>מה אנחנו עושים</h2>
+            <p>פתרונות מלאים מותאמים אישית לצרכים שלכם</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">✦</div>
+                <h3>מיתוג וזהות דיגיטלית</h3>
+                <p>עיצוב שפה חזותית שלמה, לוגואים ומערכות עיצוב שמבדלות את המותג שלכם מהמתחרים ומעניקות לו נוכחות בלתי נשכחת.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">◈</div>
+                <h3>עיצוב חוויית משתמש UI/UX</h3>
+                <p>מחקר מעמיק, אפיון מוקפד ועיצוב ממשקים אלגנטיים שהופכים שימוש מורכב לתהליך חלק, אינטואיטיבי ומהיר.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>פיתוח אינטראקטיבי מתקדם</h3>
+                <p>בניית אתרים ואפליקציות עם ביצועים מהירים במיוחד, התאמה מלאה לכל מסך וארכיטקטורת קוד נקייה ומאובטחת.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="section-header">
+            <h2>בואו נתחיל פרויקט יחד</h2>
+            <p>השאירו פרטים ונחזור אליכם בהקדם האפשרי</p>
+        </div>
+        <div class="contact-box">
+            <form id="contactForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">שם מלא</label>
+                    <input type="text" id="name" required placeholder="ישראל ישראלי">
+                </div>
+                <div class="form-group">
+                    <label for="email">כתובת אימייל</label>
+                    <input type="email" id="email" required placeholder="israel@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">פרטי הפרויקט</label>
+                    <textarea id="message" required placeholder="ספרו לנו בקצרה על מה שאתם צריכים..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-submit">שליחת הודעה</button>
+                <div id="statusMsg" class="status-msg">תודה רבה! פנייתך התקבלה בהצלחה. ניצור קשר בהקדם.</div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 K Studio. כל הזכויות שמורות.</p>
+    </footer>
+
+    <script>
+        function animateCounter(id, target, speed) {
+            let count = 0;
+            const element = document.getElementById(id);
+            const step = Math.ceil(target / (speed / 16));
+            const timer = setInterval(() => {
+                count += step;
+                if (count >= target) {
+                    element.innerText = target + '+';
+                    clearInterval(timer);
+                } else {
+                    element.innerText = count;
+                }
+            }, 16);
+        }
+
+        window.addEventListener('load', () => {
+            animateCounter('counter1', 120, 1500);
+            animateCounter('counter2', 85, 1500);
+        });
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            const status = document.getElementById('statusMsg');
+            status.style.display = 'block';
+            document.getElementById('contactForm').reset();
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
