@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מידע על מבחנים</title>
+<style>
+  body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f5f5;
+    color:#333;
+    line-height:1.5;
+  }
+  header{
+    background:#0066cc;
+    color:#fff;
+    padding:1rem;
+    text-align:center;
+  }
+  header h1{
+    margin:0;
+    font-size:1.8rem;
+  }
+  .container{
+    padding:1rem;
+    max-width:800px;
+    margin:auto;
+  }
+  .search{
+    display:flex;
+    margin-bottom:1rem;
+  }
+  .search input{
+    flex:1;
+    padding:.5rem;
+    font-size:1rem;
+    border:1px solid #ccc;
+    border-radius:4px 0 0 4px;
+  }
+  .search button{
+    padding:.5rem 1rem;
+    background:#0066cc;
+    color:#fff;
+    border:none;
+    cursor:pointer;
+    border-radius:0 4px 4px 0;
+  }
+  .exam-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+  }
+  .exam-item{
+    background:#fff;
+    margin-bottom:.5rem;
+    padding:.8rem;
+    border-radius:6px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.1);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .exam-item span{
+    font-weight:bold;
+  }
+  .theme-toggle{
+    position:fixed;
+    bottom:1rem;
+    left:1rem;
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:20px;
+    padding:.3rem .8rem;
+    cursor:pointer;
+    box-shadow:0 2px 5px rgba(0,0,0,0.2);
+  }
+  @media (max-width:600px){
+    header h1{font-size:1.5rem;}
+    .exam-item{flex-direction:column;align-items:flex-start;}
+    .exam-item span{margin-top:.4rem;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>📝 מידע על מבחנים</h1>
+</header>
+<div class="container">
+  <div class="search">
+    <input type="text" id="searchInput" placeholder="חיפוש מבחן...">
+    <button onclick="filterExams()">🔍</button>
+  </div>
+  <ul class="exam-list" id="examList">
+    <li class="exam-item" data-name="מתמטיקה">
+      <div>מתמטיקה - 12/05/2026</div>
+      <span>10:00</span>
+    </li>
+    <li class="exam-item" data-name="פיזיקה">
+      <div>פיזיקה - 20/05/2026</div>
+      <span>14:00</span>
+    </li>
+    <li class="exam-item" data-name="כימיה">
+      <div>כימיה - 28/05/2026</div>
+      <span>09:00</span>
+    </li>
+    <li class="exam-item" data-name="היסטוריה">
+      <div>היסטוריה - 05/06/2026</div>
+      <span>11:30</span>
+    </li>
+  </ul>
+</div>
+<div class="theme-toggle" onclick="toggleTheme()">🌙/☀️</div>
+<script>
+  function filterExams(){
+    const term = document.getElementById('searchInput').value.toLowerCase();
+    const items = document.querySelectorAll('.exam-item');
+    items.forEach(item=>{
+      const name = item.dataset.name.toLowerCase();
+      item.style.display = name.includes(term) ? '' : 'none';
+    });
+  }
+  function toggleTheme(){
+    const dark = document.body.style.background === 'rgb(33, 33, 33)';
+    if(dark){
+      document.body.style.background='#f5f5f5';
+      document.body.style.color='#333';
+    }else{
+      document.body.style.background='#212121';
+      document.body.style.color='#eee';
+    }
+    const cards = document.querySelectorAll('.exam-item');
+    cards.forEach(c=>c.style.background = dark ? '#fff' : '#424242');
+  }
+</script>
+</body>
+</html>
