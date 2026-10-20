@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ינון הכהן הקטן</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root{
+  --bg:#f5f5f5;
+  --text:#333;
+  --primary:#0066cc;
+}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  direction:rtl;
+}
+header{
+  background:var(--primary);
+  color:#fff;
+  padding:1rem;
+  text-align:center;
+}
+.container{
+  max-width:800px;
+  margin:auto;
+  padding:1rem;
+}
+section{
+  margin-bottom:2rem;
+}
+h2{
+  border-bottom:2px solid var(--primary);
+  padding-bottom:.5rem;
+}
+.profile-pic{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  margin:auto;
+}
+button.toggle{
+  background:none;
+  border:2px solid #fff;
+  color:#fff;
+  padding:.5rem 1rem;
+  cursor:pointer;
+  border-radius:5px;
+}
+.dark{
+  --bg:#222;
+  --text:#eee;
+  --primary:#5599ff;
+}
+@media (max-width:600px){
+  header{font-size:.9rem;}
+  .profile-pic{width:120px;height:120px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>ינון הכהן הקטן</h1>
+  <button class="toggle" onclick="toggleDark()">מצב כהה</button>
+</header>
+<div class="container">
+  <section id="about">
+    <h2>אודות</h2>
+    <img src="https://via.placeholder.com/150" alt="תמונה של ינון" class="profile-pic">
+    <p>ינון הכהן הקטן הוא יזם, מתכנת וחובב טכנולוגיה. הוא מתמחה בפיתוח אתרי אינטרנט מודרניים, אפליקציות מובייל ועיצוב UI/UX.</p>
+  </section>
+  <section id="skills">
+    <h2>מיומנויות</h2>
+    <ul>
+      <li>HTML, CSS, JavaScript</li>
+      <li>React, Vue (בלי ספריות חיצוניות בדוגמה)</li>
+      <li>Node.js ו‑Express</li>
+      <li>עיצוב רספונסיבי</li>
+    </ul>
+  </section>
+  <section id="contact">
+    <h2>יצירת קשר</h2>
+    <form id="contactForm" onsubmit="return sendMessage(event)">
+      <label>שם:</label><br>
+      <input type="text" required style="width:100%;margin-bottom:0.5rem;"><br>
+      <label>אימייל:</label><br>
+      <input type="email" required style="width:100%;margin-bottom:0.5rem;"><br>
+      <label>הודעה:</label><br>
+      <textarea required style="width:100%;height:80px;margin-bottom:0.5rem;"></textarea><br>
+      <button type="submit" style="background:var(--primary);color:#fff;padding:0.5rem 1rem;border:none;border-radius:5px;cursor:pointer;">שלח</button>
+    </form>
+    <p id="msgStatus" style="margin-top:0.5rem;"></p>
+  </section>
+</div>
+<script>
+function toggleDark(){
+  document.body.classList.toggle('dark');
+}
+function sendMessage(e){
+  e.preventDefault();
+  const status=document.getElementById('msgStatus');
+  status.textContent='ההודעה נשלחה (דמוי). תודה!';
+  e.target.reset();
+  return false;
+}
+</script>
+</body>
+</html>
