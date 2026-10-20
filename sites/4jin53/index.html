@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ינון הכהן הקטן</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:0;background:#f5f5f5;color:#333}
+  header{background:#4a90e2;color:#fff;padding:1.5rem;text-align:center}
+  header h1{margin:0;font-size:1.8rem}
+  .container{padding:1rem}
+  .profile{display:flex;flex-direction:column;align-items:center;background:#fff;border-radius:8px;padding:1.5rem;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+  .profile img{width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:1rem}
+  .profile h2{margin:0;font-size:1.5rem}
+  .profile p{margin:0.5rem 0;text-align:center}
+  .nav{display:flex;justify-content:center;margin-top:1rem}
+  .nav button{background:#4a90e2;color:#fff;border:none;padding:0.5rem 1rem;margin:0 0.5rem;border-radius:4px;cursor:pointer}
+  .nav button.active{background:#357ab8}
+  .section{display:none;margin-top:1rem}
+  .section.active{display:block}
+  @media(min-width:600px){
+    .profile{flex-direction:row;align-items:flex-start}
+    .profile img{margin-right:1.5rem;margin-bottom:0}
+    .profile div{text-align:right}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>ינון הכהן הקטן</h1>
+</header>
+<div class="container">
+  <div class="profile">
+    <img src="https://via.placeholder.com/120" alt="תמונת ינון">
+    <div>
+      <h2>ינון הכהן</h2>
+      <p>מתכנת, חובב מוזיקה, ומחפש תמיד את האתגר הבא.</p>
+    </div>
+  </div>
+  <div class="nav">
+    <button data-target="about" class="active">אודות</button>
+    <button data-target="skills">מיומנויות</button>
+    <button data-target="contact">יצירת קשר</button>
+  </div>
+  <section id="about" class="section active">
+    <h3>אודות ינון</h3>
+    <p>ינון הוא מתכנת צעיר עם תשוקה לבניית אתרים מודרניים, אוהב ללמוד טכנולוגיות חדשות ולשתף ידע עם הקהילה.</p>
+  </section>
+  <section id="skills" class="section">
+    <h3>מיומנויות</h3>
+    <ul>
+      <li>HTML5 & CSS3</li>
+      <li>JavaScript (ES6+)</li>
+      <li>Responsive Design</li>
+      <li>Node.js & Express</li>
+    </ul>
+  </section>
+  <section id="contact" class="section">
+    <h3>יצירת קשר</h3>
+    <p>דוא"ל: <a href="mailto:yinon@example.com">yinon@example.com</a></p>
+    <p>טלפון: <a href="tel:+972500000000">+972 50-000-0000</a></p>
+  </section>
+</div>
+<script>
+  const buttons = document.querySelectorAll('.nav button');
+  const sections = document.querySelectorAll('.section');
+  buttons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelector('.nav button.active').classList.remove('active');
+      btn.classList.add('active');
+      const target = btn.getAttribute('data-target');
+      sections.forEach(sec=>{
+        sec.id===target ? sec.classList.add('active') : sec.classList.remove('active');
+      });
+    });
+  });
+</script>
+</body>
+</html>
